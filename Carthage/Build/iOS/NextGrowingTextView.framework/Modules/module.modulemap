@@ -1,0 +1,11 @@
+framework module NextGrowingTextView {
+  umbrella header "NextGrowingTextView.h"
+
+  export *
+  module * { export * }
+}
+
+module NextGrowingTextView.Swift {
+    header "NextGrowingTextView-Swift.h"
+    requires objc
+}
