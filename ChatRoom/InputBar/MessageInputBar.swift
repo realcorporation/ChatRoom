@@ -9,18 +9,49 @@
 import UIKit
 import NextGrowingTextView
 
+protocol GrowingTextViewDelegate: NSObjectProtocol {
+    func growingTextView(_ textView: GrowingTextView, imagesDidPaste images: [UIImage])
+}
+
+open class GrowingTextView: NextGrowingTextView {
+    
+    weak var customDelegate: GrowingTextViewDelegate?
+    
+    var canHandlePasteImages: Bool = true
+        
+    override open func canPerformAction(_ action: Selector, withSender sender: Any?) -> Bool {
+        
+        if canHandlePasteImages && UIPasteboard.general.hasImages && action == #selector(paste(_:)) {
+            return true
+        }
+        
+        return super.canPerformAction(action, withSender: sender)
+    }
+    
+    override open func paste(_ sender: Any?) {
+        if UIPasteboard.general.hasImages {
+            guard let images = UIPasteboard.general.images else { return }
+            customDelegate?.growingTextView(self, imagesDidPaste: images)
+        } else {
+            super.paste(sender)
+        }
+    }
+}
+
 protocol MessageInputBarDelegate: NSObjectProtocol {
     func messageInputBar(_ inputBar: MessageInputBar, willChangeHeight height: CGFloat)
     func messageInputBar(_ inputBar: MessageInputBar, didChangeHeight height: CGFloat)
     
     func messageInputBar(_ inputBar: MessageInputBar, textDidChange text: String)
+    
+    func messageInputBar(_ inputBar: MessageInputBar, imagesDidPaste images: [UIImage])
 }
 
 open class MessageInputBar: UIView {
     
     public enum State {
         case normal
-        case typing
+        case textEditing
     }
     
     class BarItems {
@@ -30,6 +61,18 @@ open class MessageInputBar: UIView {
         
         required init(state: State) {
             self.state = state
+        }
+    }
+    
+    open var canHandlePasteImages: Bool = true {
+        didSet {
+            growingTextView.canHandlePasteImages = canHandlePasteImages
+        }
+    }
+    
+    open var barItemsSpacing = CGFloat(8) {
+        didSet {
+            stackView.spacing = barItemsSpacing
         }
     }
     
@@ -49,10 +92,16 @@ open class MessageInputBar: UIView {
         return true
     }
     
+    override open var backgroundColor: UIColor? {
+        didSet {
+            backgroundView.backgroundColor = backgroundColor
+        }
+    }
+    
     weak var delegate: MessageInputBarDelegate?
     
-    private(set) var growingTextView: NextGrowingTextView = {
-        let growingTextView = NextGrowingTextView(frame: .zero)
+    open private(set) var growingTextView: GrowingTextView = {
+        let growingTextView = GrowingTextView(frame: .zero)
         growingTextView.minNumberOfLines = 1
         growingTextView.maxNumberOfLines = 5
         growingTextView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
@@ -89,7 +138,7 @@ open class MessageInputBar: UIView {
     }()
     
     private var normalStateBarItems = BarItems(state: .normal)
-    private var typingStateBarItems = BarItems(state: .typing)
+    private var textEditingStateBarItems = BarItems(state: .textEditing)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -110,6 +159,7 @@ open class MessageInputBar: UIView {
         layoutMargins = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         backgroundColor = .white
         
+        growingTextView.customDelegate = self
         stackView.addArrangedSubview(growingTextView)
         
         addSubview(backgroundView)
@@ -161,8 +211,8 @@ open class MessageInputBar: UIView {
         case .normal:
             normalStateBarItems.leadingItems = leadingItems
             break
-        case .typing:
-            typingStateBarItems.leadingItems = leadingItems
+        case .textEditing:
+            textEditingStateBarItems.leadingItems = leadingItems
             break
         }
         
@@ -174,8 +224,8 @@ open class MessageInputBar: UIView {
         case .normal:
             normalStateBarItems.trailingItems = trailingItems
             break
-        case .typing:
-            typingStateBarItems.trailingItems = trailingItems
+        case .textEditing:
+            textEditingStateBarItems.trailingItems = trailingItems
             break
         }
         
@@ -192,8 +242,8 @@ open class MessageInputBar: UIView {
             stackView.addArrangedSubview(item)
         }
         
-        for item in typingStateBarItems.leadingItems {
-            item.isHidden = typingStateBarItems.state != state
+        for item in textEditingStateBarItems.leadingItems {
+            item.isHidden = textEditingStateBarItems.state != state
             stackView.addArrangedSubview(item)
         }
         
@@ -204,8 +254,8 @@ open class MessageInputBar: UIView {
             stackView.addArrangedSubview(item)
         }
         
-        for item in typingStateBarItems.trailingItems {
-            item.isHidden = typingStateBarItems.state != state
+        for item in textEditingStateBarItems.trailingItems {
+            item.isHidden = textEditingStateBarItems.state != state
             stackView.addArrangedSubview(item)
         }
     }
@@ -215,22 +265,22 @@ open class MessageInputBar: UIView {
         case .normal:
             normalStateBarItems.leadingItems.forEach { $0.isHidden = false }
             normalStateBarItems.trailingItems.forEach { $0.isHidden = false }
-            typingStateBarItems.leadingItems.forEach { $0.isHidden = true }
-            typingStateBarItems.trailingItems.forEach { $0.isHidden = true }
+            textEditingStateBarItems.leadingItems.forEach { $0.isHidden = true }
+            textEditingStateBarItems.trailingItems.forEach { $0.isHidden = true }
             break
-        case .typing:
-            if typingStateBarItems.leadingItems.count == 0 {
+        case .textEditing:
+            if textEditingStateBarItems.leadingItems.count == 0 {
                 normalStateBarItems.leadingItems.forEach { $0.isHidden = false }
             } else {
                 normalStateBarItems.leadingItems.forEach { $0.isHidden = true }
-                typingStateBarItems.leadingItems.forEach { $0.isHidden = false }
+                textEditingStateBarItems.leadingItems.forEach { $0.isHidden = false }
             }
             
-            if typingStateBarItems.trailingItems.count == 0 {
+            if textEditingStateBarItems.trailingItems.count == 0 {
                 normalStateBarItems.trailingItems.forEach { $0.isHidden = false }
             } else {
                 normalStateBarItems.trailingItems.forEach { $0.isHidden = true }
-                typingStateBarItems.trailingItems.forEach { $0.isHidden = false }
+                textEditingStateBarItems.trailingItems.forEach { $0.isHidden = false }
             }
             break
         }
@@ -246,7 +296,7 @@ open class MessageInputBar: UIView {
         guard let textView = noti.object as? UITextView else { return }
         
         if let text = textView.text, text.count > 0 {
-            state = .typing
+            state = .textEditing
         } else {
             state = .normal
         }
@@ -255,3 +305,8 @@ open class MessageInputBar: UIView {
     }
 }
 
+extension MessageInputBar: GrowingTextViewDelegate {
+    func growingTextView(_ textView: GrowingTextView, imagesDidPaste images: [UIImage]) {
+        delegate?.messageInputBar(self, imagesDidPaste: images)
+    }
+}

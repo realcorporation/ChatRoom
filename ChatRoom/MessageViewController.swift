@@ -11,12 +11,37 @@ import UIKit
 public protocol MessageViewControllerDelegate: NSObjectProtocol {
     func messageViewController(_ controller: MessageViewController, textWillSubmit text: String)
     func messageViewController(_ controller: MessageViewController, textDidClear text: String)
+    func messageViewController(_ controller: MessageViewController, imagesDidPaste images: [UIImage])
+    func messageViewController(_ controller: MessageViewController, typingStateDidChange typingState: MessageViewController.TypingState)
+}
+
+public extension MessageViewControllerDelegate {
+    func messageViewController(_ controller: MessageViewController, typingStateDidChange typingState: MessageViewController.TypingState) {
+        // optional
+        print("typingState: \(typingState)")
+    }
 }
 
 open class MessageViewController: UIViewController {
     
+    public enum TypingState {
+        case idle
+        case typing
+    }
+    
     open weak var delegate: MessageViewControllerDelegate?
-    open var shouldScrollToBottomWhenFirstLoad = true
+    
+    /// Only work when datasource setup before first layout
+    open var shouldScrollToBottomWhenFirstLayout = true
+    
+    open var typingDelaySeconds = TimeInterval(2)
+    
+    open private(set) var typingState: TypingState = .idle {
+        didSet {
+            guard oldValue != typingState else { return }
+            delegate?.messageViewController(self, typingStateDidChange: typingState)
+        }
+    }
     
     open private(set) var messageCollectionView: MessageCollectionView
     open private(set) var messageCollectionViewLayout = MessageCollectionViewFlowLayout()
@@ -27,6 +52,8 @@ open class MessageViewController: UIViewController {
     private var inputBarHeightConstraint: NSLayoutConstraint?
     
     private var didLayoutSubviews = false
+    
+    private var typingTimer: Timer?
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 
@@ -87,6 +114,13 @@ open class MessageViewController: UIViewController {
                                                object: nil)
     }
     
+    deinit {
+        if typingTimer != nil {
+            typingTimer?.invalidate()
+            typingTimer = nil
+        }
+    }
+    
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -95,19 +129,14 @@ open class MessageViewController: UIViewController {
             messageCollectionView.contentInset.bottom = messageInputBar.frame.height
             messageCollectionView.scrollIndicatorInsets = messageCollectionView.contentInset
             
-            if shouldScrollToBottomWhenFirstLoad {
+            if shouldScrollToBottomWhenFirstLayout {
                 scrollToBottom(animated: false)
             }
         }
     }
     
     // MARK: - Notifications
-    
-    @available(iOS 11.0, *)
-    open override func viewSafeAreaInsetsDidChange() {
-        super.viewSafeAreaInsetsDidChange()
-    }
-    
+
     @objc private func keyboardNotification(notification: Notification) {
         
         if let userInfo = notification.userInfo,
@@ -166,8 +195,16 @@ open class MessageViewController: UIViewController {
     
     // MARK: - Actions
     
+    open func reloadData(shouldScrollToBottom: Bool, animated: Bool) {
+        messageCollectionView.reloadData()
+        messageCollectionView.performBatchUpdates(nil) { [weak self] _ in
+            self?.scrollToBottom(animated: animated)
+        }
+    }
+    
     open func submitInput() {
         guard let text = messageInputBar.growingTextView.textView.text, text.count > 0 else { return }
+        typingState = .idle
         delegate?.messageViewController(self, textWillSubmit: text)
         clearInput()
     }
@@ -217,7 +254,20 @@ extension MessageViewController: MessageInputBarDelegate {
     }
     
     func messageInputBar(_ inputBar: MessageInputBar, textDidChange text: String) {
+        typingState = .typing
         
+        if typingTimer != nil {
+            typingTimer?.invalidate()
+            typingTimer = nil
+        }
+        
+        typingTimer = Timer.scheduledTimer(withTimeInterval: typingDelaySeconds, repeats: false, block: { [weak self] _ in
+            self?.typingState = .idle
+        })
+    }
+    
+    func messageInputBar(_ inputBar: MessageInputBar, imagesDidPaste images: [UIImage]) {
+        delegate?.messageViewController(self, imagesDidPaste: images)
     }
 }
 

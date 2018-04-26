@@ -59,11 +59,19 @@ final class ChatRoomViewController: MessageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        messageLists = ["Hello1", "Hello2", "Hello3", "Hello4", "Hello5", "Hello6", "Hello7", "Hello8", "Hello9", "Hello10"]
+        // messageLists = ["Hello1", "Hello2", "Hello3", "Hello4", "Hello5", "Hello6", "Hello7", "Hello8", "Hello9", "Hello10"]
         
         delegate = self
         
         sendButton.addTarget(self, action: #selector(send(_:)), for: .touchUpInside)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        messageLists = ["Hello1", "Hello2", "Hello3", "Hello4", "Hello5", "Hello6", "Hello7", "Hello8", "Hello9", "Hello10"]
+        
+        reloadData(shouldScrollToBottom: true, animated: false)
     }
     
     override func configureCollectionView(_ collectionView: MessageCollectionView, layout: MessageCollectionViewFlowLayout) {
@@ -74,11 +82,19 @@ final class ChatRoomViewController: MessageViewController {
     
     override func configureInputBar(_ inputBar: MessageInputBar) {
         
+        inputBar.barItemsSpacing = 4
+        inputBar.backgroundColor = UIColor.lightGray
+        inputBar.growingTextView.textView.backgroundColor = .white
+        inputBar.growingTextView.placeholderAttributedText = NSAttributedString(string: "Message", attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body),
+                                                                                                                NSAttributedStringKey.foregroundColor: UIColor.lightGray])
+        inputBar.topHairLineHeight = 0.5
+        inputBar.topHairline.backgroundColor = UIColor.brown
+        
         let addItem = MessageInputBarItem(customView: addButton, itemType: .custom)
         inputBar.setLeadingItems([addItem], for: .normal)
         
         let sendItem = MessageInputBarItem(customView: sendButton, itemType: .submit)
-        inputBar.setTrailingItems([sendItem], for: .typing)
+        inputBar.setTrailingItems([sendItem], for: .textEditing)
     }
     
     @objc func send(_ sender: SendButton) {
@@ -111,19 +127,36 @@ extension ChatRoomViewController: UICollectionViewDelegate, UICollectionViewDele
 }
 
 extension ChatRoomViewController: MessageViewControllerDelegate {
+    
     func messageViewController(_ controller: MessageViewController, textWillSubmit text: String) {
         messageLists.append(text)
         
-        let indexPath = IndexPath(item: messageLists.count - 1, section: 0)
-
-        messageCollectionView.performBatchUpdates({ [weak self] in
-            self?.messageCollectionView.insertItems(at: [indexPath])
-        }) { [weak self] (_) in
-            self?.scrollToBottom(animated: true)
-        }
+        reloadData(shouldScrollToBottom: true, animated: true)
+        
+//        let indexPath = IndexPath(item: messageLists.count - 1, section: 0)
+//        messageCollectionView.performBatchUpdates({ [weak self] in
+//            self?.messageCollectionView.insertItems(at: [indexPath])
+//        }) { [weak self] (_) in
+//            self?.scrollToBottom(animated: true)
+//        }
     }
     
     func messageViewController(_ controller: MessageViewController, textDidClear text: String) {
         
+    }
+    
+    func messageViewController(_ controller: MessageViewController, imagesDidPaste images: [UIImage]) {
+        
+    }
+    
+    func messageViewController(_ controller: MessageViewController, typingStateDidChange typingState: MessageViewController.TypingState) {
+        switch typingState {
+        case .idle:
+            title = ""
+            break
+        case .typing:
+            title = "you are typing..."
+            break
+        }
     }
 }
