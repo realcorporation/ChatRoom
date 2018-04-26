@@ -18,7 +18,6 @@ public protocol MessageViewControllerDelegate: NSObjectProtocol {
 public extension MessageViewControllerDelegate {
     func messageViewController(_ controller: MessageViewController, typingStateDidChange typingState: MessageViewController.TypingState) {
         // optional
-        print("typingState: \(typingState)")
     }
 }
 
@@ -38,7 +37,6 @@ open class MessageViewController: UIViewController {
     
     open private(set) var typingState: TypingState = .idle {
         didSet {
-            guard oldValue != typingState else { return }
             delegate?.messageViewController(self, typingStateDidChange: typingState)
         }
     }
@@ -63,7 +61,10 @@ open class MessageViewController: UIViewController {
         messageCollectionView.alwaysBounceVertical = true
         messageCollectionView.showsHorizontalScrollIndicator = false
         messageCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        messageCollectionView.keyboardDismissMode = .onDrag
+        
+        if #available(iOS 11.0, *) {
+            messageCollectionView.keyboardDismissMode = .onDrag
+        }
         
         super.init(nibName: nil, bundle: nil)
         

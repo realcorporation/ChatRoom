@@ -21,7 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let messageViewController = ChatRoomViewController(nibName: nil, bundle: nil)
         let navigationController = UINavigationController(rootViewController: messageViewController)
-        navigationController.navigationBar.prefersLargeTitles = false
+        if #available(iOS 11.0, *) {
+            navigationController.navigationBar.prefersLargeTitles = false
+        }
         window?.rootViewController = navigationController
         
         return true

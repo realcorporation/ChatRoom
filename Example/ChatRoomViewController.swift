@@ -152,9 +152,11 @@ extension ChatRoomViewController: MessageViewControllerDelegate {
     func messageViewController(_ controller: MessageViewController, typingStateDidChange typingState: MessageViewController.TypingState) {
         switch typingState {
         case .idle:
+            print("idle")
             title = ""
             break
         case .typing:
+            print("you are typing...")
             title = "you are typing..."
             break
         }
