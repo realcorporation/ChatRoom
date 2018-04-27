@@ -94,7 +94,7 @@ final class ChatRoomViewController: MessageViewController {
         
         inputBar.barItemsSpacing = 4
         inputBar.backgroundColor = UIColor.lightGray
-        inputBar.growingTextView.textView.backgroundColor = .white
+        inputBar.growingTextView.backgroundColor = .white
         inputBar.growingTextView.placeholderAttributedText = NSAttributedString(string: "Message", attributes: [NSAttributedStringKey.font: UIFont.preferredFont(forTextStyle: .body),
                                                                                                                 NSAttributedStringKey.foregroundColor: UIColor.lightGray])
         inputBar.topHairLineHeight = 0.5

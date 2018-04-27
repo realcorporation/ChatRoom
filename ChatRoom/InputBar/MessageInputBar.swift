@@ -104,7 +104,7 @@ open class MessageInputBar: UIView {
         let growingTextView = GrowingTextView(frame: .zero)
         growingTextView.minNumberOfLines = 1
         growingTextView.maxNumberOfLines = 5
-        growingTextView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
+        growingTextView.backgroundColor = .clear
         growingTextView.textView.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         growingTextView.layer.cornerRadius = 8
         growingTextView.layer.masksToBounds = true
