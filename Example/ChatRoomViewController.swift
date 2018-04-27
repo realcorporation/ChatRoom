@@ -69,9 +69,19 @@ final class ChatRoomViewController: MessageViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        messageLists = ["Hello1", "Hello2", "Hello3", "Hello4", "Hello5", "Hello6", "Hello7", "Hello8", "Hello9", "Hello10"]
+        messageLists = []
+        // messageLists = ["Hello1", "Hello2", "Hello3", "Hello4", "Hello5", "Hello6", "Hello7", "Hello8", "Hello9", "Hello10"]
+        var data = [String]()
+        for i in 0..<10000 {
+            let string = "Hello" + String(i)
+            data.append(string)
+        }
         
-        reloadData(shouldScrollToBottom: true, animated: false)
+        DispatchQueue.main.async {
+            self.messageLists = data
+            self.reloadData(shouldScrollToBottom: true, animated: false)
+        }
+        
     }
     
     override func configureCollectionView(_ collectionView: MessageCollectionView, layout: MessageCollectionViewFlowLayout) {

@@ -198,9 +198,14 @@ open class MessageViewController: UIViewController {
     
     open func reloadData(shouldScrollToBottom: Bool, animated: Bool) {
         messageCollectionView.reloadData()
-        messageCollectionView.performBatchUpdates(nil) { [weak self] _ in
-            self?.scrollToBottom(animated: animated)
+        if animated {
+            messageCollectionView.performBatchUpdates(nil) { [weak self] _ in
+                self?.scrollToBottom(animated: animated)
+            }
+        } else {
+            scrollToBottom(animated: animated)
         }
+        
     }
     
     open func submitInput() {
