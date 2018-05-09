@@ -79,7 +79,9 @@ final class ChatRoomViewController: MessageViewController {
         
         DispatchQueue.main.async {
             self.messageLists = data
-            self.reloadData(shouldScrollToBottom: true, animated: false)
+            // self.reloadData(shouldScrollToBottom: false, animated: false)
+            
+            self.reloadData(scrollToIndexPath: IndexPath(item: 100, section: 0), animated: false)
         }
         
     }

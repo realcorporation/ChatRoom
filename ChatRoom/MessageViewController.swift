@@ -196,6 +196,18 @@ open class MessageViewController: UIViewController {
     
     // MARK: - Actions
     
+    open func reloadData(scrollToIndexPath indexPath: IndexPath, animated: Bool) {
+        messageCollectionView.reloadData()
+        
+        if animated {
+            messageCollectionView.performBatchUpdates(nil) { [weak self] _ in
+                self?.messageCollectionView.scrollToItem(at: indexPath, at: .top, animated: animated)
+            }
+        } else {
+            messageCollectionView.scrollToItem(at: indexPath, at: .top, animated: animated)
+        }
+    }
+    
     open func reloadData(shouldScrollToBottom shouldScroll: Bool, animated: Bool) {
         messageCollectionView.reloadData()
         
