@@ -15,7 +15,6 @@
 		9B149A57208D80B700A8055E /* MessageCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B149A56208D80B700A8055E /* MessageCollectionViewFlowLayout.swift */; };
 		9B149A5A208D825200A8055E /* MessageInputBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B149A59208D825200A8055E /* MessageInputBar.swift */; };
 		9B149A5F208D886400A8055E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B149A5E208D886400A8055E /* UIKit.framework */; };
-		9B149A61208D886E00A8055E /* NextGrowingTextView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B149A60208D886E00A8055E /* NextGrowingTextView.framework */; };
 		9B149A6B208D892D00A8055E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B149A6A208D892D00A8055E /* AppDelegate.swift */; };
 		9B149A70208D892D00A8055E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B149A6E208D892D00A8055E /* Main.storyboard */; };
 		9B149A72208D892E00A8055E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B149A71208D892E00A8055E /* Assets.xcassets */; };
@@ -74,7 +73,6 @@
 		9B149A59208D825200A8055E /* MessageInputBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputBar.swift; sourceTree = "<group>"; };
 		9B149A5C208D879000A8055E /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		9B149A5E208D886400A8055E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
-		9B149A60208D886E00A8055E /* NextGrowingTextView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NextGrowingTextView.framework; path = Carthage/Build/iOS/NextGrowingTextView.framework; sourceTree = "<group>"; };
 		9B149A68208D892D00A8055E /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B149A6A208D892D00A8055E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B149A6F208D892D00A8055E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -92,7 +90,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9B149A61208D886E00A8055E /* NextGrowingTextView.framework in Frameworks */,
 				9B149A5F208D886400A8055E /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -176,7 +173,6 @@
 			isa = PBXGroup;
 			children = (
 				9B149A7E208DC80900A8055E /* Foundation.framework */,
-				9B149A60208D886E00A8055E /* NextGrowingTextView.framework */,
 				9B149A5E208D886400A8055E /* UIKit.framework */,
 			);
 			name = Frameworks;
