@@ -214,7 +214,7 @@
 				9B149A34208D7F5E00A8055E /* Frameworks */,
 				9B149A35208D7F5E00A8055E /* Headers */,
 				9B149A36208D7F5E00A8055E /* Resources */,
-				9B149A63208D887A00A8055E /* Cathage Run Script */,
+				4CA023C620B6B6D400B1EE77 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -332,21 +332,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9B149A63208D887A00A8055E /* Cathage Run Script */ = {
+		4CA023C620B6B6D400B1EE77 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/NextGrowingTextView.framework",
 			);
-			name = "Cathage Run Script";
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/NextGrowingTextView.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "cd \"${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/\"\nif [[ -d \"Frameworks\" ]]; then\nrm -fr Frameworks\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -558,6 +555,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.realcorporation.ChatRoom;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
@@ -590,6 +588,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+					"@executable_path/../../Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.realcorporation.ChatRoom;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
