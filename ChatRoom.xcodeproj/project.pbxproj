@@ -25,7 +25,6 @@
 		9B149A7F208DC80900A8055E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B149A7E208DC80900A8055E /* Foundation.framework */; };
 		9B149A80208DC84200A8055E /* ChatRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B149A38208D7F5E00A8055E /* ChatRoom.framework */; };
 		9B149A81208DC84200A8055E /* ChatRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B149A38208D7F5E00A8055E /* ChatRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9B149A86208DC87900A8055E /* NextGrowingTextView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B149A85208DC87900A8055E /* NextGrowingTextView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9B149A88208DD6EB00A8055E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B149A87208DD6EB00A8055E /* MessageCell.swift */; };
 		9B149A8C208DEC9C00A8055E /* MessageInputBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B149A8B208DEC9C00A8055E /* MessageInputBarItem.swift */; };
 		9B149A8E208ED17A00A8055E /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B149A8D208ED17A00A8055E /* ChatRoomViewController.swift */; };
@@ -55,7 +54,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				9B149A86208DC87900A8055E /* NextGrowingTextView.framework in Embed Frameworks */,
 				9B149A81208DC84200A8055E /* ChatRoom.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -84,7 +82,6 @@
 		9B149A74208D892E00A8055E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9B149A76208D892E00A8055E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B149A7E208DC80900A8055E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		9B149A85208DC87900A8055E /* NextGrowingTextView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NextGrowingTextView.framework; path = Carthage/Build/iOS/NextGrowingTextView.framework; sourceTree = "<group>"; };
 		9B149A87208DD6EB00A8055E /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
 		9B149A8B208DEC9C00A8055E /* MessageInputBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputBarItem.swift; sourceTree = "<group>"; };
 		9B149A8D208ED17A00A8055E /* ChatRoomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
@@ -125,7 +122,6 @@
 		9B149A2E208D7F5E00A8055E = {
 			isa = PBXGroup;
 			children = (
-				9B149A85208DC87900A8055E /* NextGrowingTextView.framework */,
 				9B149A5C208D879000A8055E /* Cartfile */,
 				9B149A69208D892D00A8055E /* Example */,
 				9B149A3A208D7F5E00A8055E /* ChatRoom */,
