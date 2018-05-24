@@ -144,8 +144,6 @@
 		9B149A3A208D7F5E00A8055E /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
-				9B149A59208D825200A8055E /* MessageInputBar.swift */,
-				9B149A8B208DEC9C00A8055E /* MessageInputBarItem.swift */,
 				9B149A3B208D7F5E00A8055E /* ChatRoom.h */,
 				9B149A3C208D7F5E00A8055E /* Info.plist */,
 				9B149A58208D823E00A8055E /* InputBar */,
@@ -168,6 +166,8 @@
 		9B149A58208D823E00A8055E /* InputBar */ = {
 			isa = PBXGroup;
 			children = (
+				9B149A59208D825200A8055E /* MessageInputBar.swift */,
+				9B149A8B208DEC9C00A8055E /* MessageInputBarItem.swift */,
 			);
 			path = InputBar;
 			sourceTree = "<group>";
