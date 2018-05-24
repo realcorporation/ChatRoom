@@ -1,0 +1,561 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		91B0A25E73454F69BCE1746E78F9EA46 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		AED8AF596D06F894B0F4D387F3F95388 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		AF4FBC2D36775788D33AFFE0EA8C349C /* NextGrowingTextView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 61BB0F3936D45A43D2C27EBAA644B834 /* NextGrowingTextView-dummy.m */; };
+		C6EEA7B681B1682907E6E73B360B31BD /* NextGrowingTextView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 334557AAF7D17F2515B092BF8D9EBE92 /* NextGrowingTextView-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CA4FFBFEDE973A3BB2A42E2DBB926D89 /* Pods-ChatRoom-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E93B95668CF4469D96A5129790E45DC4 /* Pods-ChatRoom-umbrella.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CF086293EE9949F3D9630674E41B57B8 /* NextGrowingInternalTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0306E9D7CF7674AF4C6E9008264BBE04 /* NextGrowingInternalTextView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		E44F7932450190B1F46C474AD9F8BDED /* Pods-ChatRoom-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 55665CD4D498AFB2FE94403B3A96205B /* Pods-ChatRoom-dummy.m */; };
+		F03E7EE59CF548175DFD752EE49E4D2D /* NextGrowingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4CA7BCBF61EF20972976DAFB29EBBA5 /* NextGrowingTextView.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DF39667D26008D4579FCAE7EC0535B75 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 03BA73EC6D24345238BA09A3C9F15C5A;
+			remoteInfo = NextGrowingTextView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0238ACFE2D43954157AEF831976F866F /* Pods-ChatRoom-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-ChatRoom-resources.sh"; sourceTree = "<group>"; };
+		0306E9D7CF7674AF4C6E9008264BBE04 /* NextGrowingInternalTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NextGrowingInternalTextView.swift; path = NextGrowingTextView/NextGrowingInternalTextView.swift; sourceTree = "<group>"; };
+		141957BA35CE1822BAFFD7D7D6DED183 /* NextGrowingTextView-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NextGrowingTextView-prefix.pch"; sourceTree = "<group>"; };
+		1A8550845842945ED443A5D9C6416D67 /* Pods-ChatRoom.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-ChatRoom.modulemap"; sourceTree = "<group>"; };
+		1F3A00599FAE7B5B306CF1A11D089A9D /* libNextGrowingTextView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libNextGrowingTextView.a; path = libNextGrowingTextView.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		334557AAF7D17F2515B092BF8D9EBE92 /* NextGrowingTextView-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NextGrowingTextView-umbrella.h"; path = "../../Headers/Public/NextGrowingTextView/NextGrowingTextView-umbrella.h"; sourceTree = "<group>"; };
+		55665CD4D498AFB2FE94403B3A96205B /* Pods-ChatRoom-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-ChatRoom-dummy.m"; sourceTree = "<group>"; };
+		6068EB953C65FBF7A0530AD2E9A0DAF0 /* NextGrowingTextView.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; name = NextGrowingTextView.modulemap; path = ../../Headers/Public/NextGrowingTextView/NextGrowingTextView.modulemap; sourceTree = "<group>"; };
+		61BB0F3936D45A43D2C27EBAA644B834 /* NextGrowingTextView-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NextGrowingTextView-dummy.m"; sourceTree = "<group>"; };
+		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		947A749C46B09E101C986C40DB6DC058 /* Pods-ChatRoom-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-ChatRoom-acknowledgements.plist"; sourceTree = "<group>"; };
+		99DD17729409B11A42326B90C4D2FEAF /* Pods-ChatRoom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ChatRoom.debug.xcconfig"; sourceTree = "<group>"; };
+		B8EBD2D8A5EEBAF8E5DA5F2D282543B1 /* Pods-ChatRoom-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-ChatRoom-acknowledgements.markdown"; sourceTree = "<group>"; };
+		C0B539763F7C521D640D17FBBF7A6D9D /* Pods-ChatRoom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-ChatRoom.release.xcconfig"; sourceTree = "<group>"; };
+		C940A47722EBFE24AEA4B882CA95430F /* NextGrowingTextView.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = NextGrowingTextView.xcconfig; sourceTree = "<group>"; };
+		D4CA7BCBF61EF20972976DAFB29EBBA5 /* NextGrowingTextView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NextGrowingTextView.swift; path = NextGrowingTextView/NextGrowingTextView.swift; sourceTree = "<group>"; };
+		E05B24D0B24E2DCF48713FB2EEED70C2 /* libPods-ChatRoom.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-ChatRoom.a"; path = "libPods-ChatRoom.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E93B95668CF4469D96A5129790E45DC4 /* Pods-ChatRoom-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-ChatRoom-umbrella.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		08931F8350DFE73D18E3C5330EE94C61 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AED8AF596D06F894B0F4D387F3F95388 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A22BB67314B6643B99EF442BA522CF6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91B0A25E73454F69BCE1746E78F9EA46 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		52B3AC5E6C1415481F4E355379A6F17D /* NextGrowingTextView */ = {
+			isa = PBXGroup;
+			children = (
+				0306E9D7CF7674AF4C6E9008264BBE04 /* NextGrowingInternalTextView.swift */,
+				D4CA7BCBF61EF20972976DAFB29EBBA5 /* NextGrowingTextView.swift */,
+				84A5D1563C33E87D6A6BF36E47068C4B /* Support Files */,
+			);
+			name = NextGrowingTextView;
+			path = NextGrowingTextView;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				A17E0EA254948B74CCA5CB5AEA6CD378 /* Pods */,
+				E4E2C89BA06AEE4D7A8B80CE266369B7 /* Products */,
+				9C7023BE423C3B0E4F8FFEBC69DCC1A9 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		84A5D1563C33E87D6A6BF36E47068C4B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				6068EB953C65FBF7A0530AD2E9A0DAF0 /* NextGrowingTextView.modulemap */,
+				C940A47722EBFE24AEA4B882CA95430F /* NextGrowingTextView.xcconfig */,
+				61BB0F3936D45A43D2C27EBAA644B834 /* NextGrowingTextView-dummy.m */,
+				141957BA35CE1822BAFFD7D7D6DED183 /* NextGrowingTextView-prefix.pch */,
+				334557AAF7D17F2515B092BF8D9EBE92 /* NextGrowingTextView-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/NextGrowingTextView";
+			sourceTree = "<group>";
+		};
+		9C7023BE423C3B0E4F8FFEBC69DCC1A9 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B8143D8FB5BBBEFDD6EC78DC0C4074DB /* Pods-ChatRoom */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		A17E0EA254948B74CCA5CB5AEA6CD378 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				52B3AC5E6C1415481F4E355379A6F17D /* NextGrowingTextView */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		B8143D8FB5BBBEFDD6EC78DC0C4074DB /* Pods-ChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+				1A8550845842945ED443A5D9C6416D67 /* Pods-ChatRoom.modulemap */,
+				B8EBD2D8A5EEBAF8E5DA5F2D282543B1 /* Pods-ChatRoom-acknowledgements.markdown */,
+				947A749C46B09E101C986C40DB6DC058 /* Pods-ChatRoom-acknowledgements.plist */,
+				55665CD4D498AFB2FE94403B3A96205B /* Pods-ChatRoom-dummy.m */,
+				0238ACFE2D43954157AEF831976F866F /* Pods-ChatRoom-resources.sh */,
+				E93B95668CF4469D96A5129790E45DC4 /* Pods-ChatRoom-umbrella.h */,
+				99DD17729409B11A42326B90C4D2FEAF /* Pods-ChatRoom.debug.xcconfig */,
+				C0B539763F7C521D640D17FBBF7A6D9D /* Pods-ChatRoom.release.xcconfig */,
+			);
+			name = "Pods-ChatRoom";
+			path = "Target Support Files/Pods-ChatRoom";
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		E4E2C89BA06AEE4D7A8B80CE266369B7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1F3A00599FAE7B5B306CF1A11D089A9D /* libNextGrowingTextView.a */,
+				E05B24D0B24E2DCF48713FB2EEED70C2 /* libPods-ChatRoom.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		03063852006350357EB344E0CED25787 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C6EEA7B681B1682907E6E73B360B31BD /* NextGrowingTextView-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		59996A314C0848071E7CBE9C585D44B5 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA4FFBFEDE973A3BB2A42E2DBB926D89 /* Pods-ChatRoom-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		03BA73EC6D24345238BA09A3C9F15C5A /* NextGrowingTextView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F19F0EBF23231B7B4BCF08A063E89012 /* Build configuration list for PBXNativeTarget "NextGrowingTextView" */;
+			buildPhases = (
+				A2705B4E410AD0B7FA56EECD7F0CBFF1 /* Sources */,
+				8A22BB67314B6643B99EF442BA522CF6 /* Frameworks */,
+				03063852006350357EB344E0CED25787 /* Headers */,
+				453DDFB139F04AEEC739743EB6BA2CC2 /* Copy generated compatibility header */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NextGrowingTextView;
+			productName = NextGrowingTextView;
+			productReference = 1F3A00599FAE7B5B306CF1A11D089A9D /* libNextGrowingTextView.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		296AF0AA86C404B5F74174E7A336AE72 /* Pods-ChatRoom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90A5BFF2DD1A5599133477717B9D95AD /* Build configuration list for PBXNativeTarget "Pods-ChatRoom" */;
+			buildPhases = (
+				6EE86A586B2BD92CFF5B11E13E9F4145 /* Sources */,
+				08931F8350DFE73D18E3C5330EE94C61 /* Frameworks */,
+				59996A314C0848071E7CBE9C585D44B5 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				375387B99E788B9AA21C87707CA0108B /* PBXTargetDependency */,
+			);
+			name = "Pods-ChatRoom";
+			productName = "Pods-ChatRoom";
+			productReference = E05B24D0B24E2DCF48713FB2EEED70C2 /* libPods-ChatRoom.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0930;
+				LastUpgradeCheck = 0930;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = E4E2C89BA06AEE4D7A8B80CE266369B7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				03BA73EC6D24345238BA09A3C9F15C5A /* NextGrowingTextView */,
+				296AF0AA86C404B5F74174E7A336AE72 /* Pods-ChatRoom */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		453DDFB139F04AEEC739743EB6BA2CC2 /* Copy generated compatibility header */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h",
+				"${PODS_ROOT}/Headers/Public/NextGrowingTextView/NextGrowingTextView.modulemap",
+				"${PODS_ROOT}/Headers/Public/NextGrowingTextView/NextGrowingTextView-umbrella.h",
+			);
+			name = "Copy generated compatibility header";
+			outputPaths = (
+				"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap",
+				"${BUILT_PRODUCTS_DIR}/NextGrowingTextView-umbrella.h",
+				"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "COMPATIBILITY_HEADER_PATH=\"${BUILT_PRODUCTS_DIR}/Swift Compatibility Header/${PRODUCT_MODULE_NAME}-Swift.h\"\nMODULE_MAP_PATH=\"${BUILT_PRODUCTS_DIR}/${PRODUCT_MODULE_NAME}.modulemap\"\n\nditto \"${DERIVED_SOURCES_DIR}/${PRODUCT_MODULE_NAME}-Swift.h\" \"${COMPATIBILITY_HEADER_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/NextGrowingTextView/NextGrowingTextView.modulemap\" \"${MODULE_MAP_PATH}\"\nditto \"${PODS_ROOT}/Headers/Public/NextGrowingTextView/NextGrowingTextView-umbrella.h\" \"${BUILT_PRODUCTS_DIR}\"\nprintf \"\\n\\nmodule ${PRODUCT_MODULE_NAME}.Swift {\\n  header \\\"${COMPATIBILITY_HEADER_PATH}\\\"\\n  requires objc\\n}\\n\" >> \"${MODULE_MAP_PATH}\"\n";
+			showEnvVarsInLog = 1;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6EE86A586B2BD92CFF5B11E13E9F4145 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E44F7932450190B1F46C474AD9F8BDED /* Pods-ChatRoom-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2705B4E410AD0B7FA56EECD7F0CBFF1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF086293EE9949F3D9630674E41B57B8 /* NextGrowingInternalTextView.swift in Sources */,
+				AF4FBC2D36775788D33AFFE0EA8C349C /* NextGrowingTextView-dummy.m in Sources */,
+				F03E7EE59CF548175DFD752EE49E4D2D /* NextGrowingTextView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		375387B99E788B9AA21C87707CA0108B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NextGrowingTextView;
+			target = 03BA73EC6D24345238BA09A3C9F15C5A /* NextGrowingTextView */;
+			targetProxy = DF39667D26008D4579FCAE7EC0535B75 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		553022A828EE1991F07D2D73F565AEF8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		58CE816B060A41D32CEC095441D0E3E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		5A6877F533217C98C5687DB22F37D1B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C940A47722EBFE24AEA4B882CA95430F /* NextGrowingTextView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/NextGrowingTextView/NextGrowingTextView-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = Headers/Public/NextGrowingTextView/NextGrowingTextView.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = NextGrowingTextView;
+				PRODUCT_NAME = NextGrowingTextView;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		72025F415C3656A2B87C66EBB73C5F26 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C0B539763F7C521D640D17FBBF7A6D9D /* Pods-ChatRoom.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ChatRoom/Pods-ChatRoom.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		829242F2C41740DB9AEDF8C8608F5063 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99DD17729409B11A42326B90C4D2FEAF /* Pods-ChatRoom.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-ChatRoom/Pods-ChatRoom.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C7A72842DB335B18927CF5F74A074588 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C940A47722EBFE24AEA4B882CA95430F /* NextGrowingTextView.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/NextGrowingTextView/NextGrowingTextView-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MODULEMAP_FILE = Headers/Public/NextGrowingTextView/NextGrowingTextView.modulemap;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = NextGrowingTextView;
+				PRODUCT_NAME = NextGrowingTextView;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				553022A828EE1991F07D2D73F565AEF8 /* Debug */,
+				58CE816B060A41D32CEC095441D0E3E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		90A5BFF2DD1A5599133477717B9D95AD /* Build configuration list for PBXNativeTarget "Pods-ChatRoom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				829242F2C41740DB9AEDF8C8608F5063 /* Debug */,
+				72025F415C3656A2B87C66EBB73C5F26 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F19F0EBF23231B7B4BCF08A063E89012 /* Build configuration list for PBXNativeTarget "NextGrowingTextView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5A6877F533217C98C5687DB22F37D1B6 /* Debug */,
+				C7A72842DB335B18927CF5F74A074588 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}
