@@ -53,7 +53,9 @@ open class MessageInputBar: UIView {
         case normal
         case textEditing
     }
-    
+
+    open var lineHeightDiff = CGFloat(0)
+
     class BarItems {
         var state: State
         var leadingItems = [MessageInputBarItem]()
@@ -161,6 +163,17 @@ open class MessageInputBar: UIView {
         backgroundColor = .white
         
         growingTextView.customDelegate = self
+
+        //get each line height
+        let origHeight = growingTextView.textView.frame.size.height
+        growingTextView.textView.insertText("\n")
+        let newHeight = growingTextView.textView.frame.size.height
+        growingTextView.textView.text = ""
+
+        self.lineHeightDiff = newHeight - origHeight
+        print("newHeight - origHeight\(newHeight - origHeight)")
+
+
         stackView.addArrangedSubview(growingTextView)
         
         addSubview(backgroundView)

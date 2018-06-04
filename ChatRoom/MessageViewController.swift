@@ -257,7 +257,7 @@ extension MessageViewController: MessageInputBarDelegate {
         
         let diff = height - oldConstant
 
-        if (diff == 0) {//reach max height show scroll indicator
+        if (height >= (inputBar.lineHeightDiff * 6)) {//reach max height show scroll indicator
             inputBar.growingTextView.showsVerticalScrollIndicator = true
         } else {
             inputBar.growingTextView.showsVerticalScrollIndicator = false
