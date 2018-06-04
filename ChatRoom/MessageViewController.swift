@@ -256,7 +256,14 @@ extension MessageViewController: MessageInputBarDelegate {
         constraint.constant = height
         
         let diff = height - oldConstant
-        
+
+        if (diff == 0.0) {//reach max height show scroll indicator
+            inputBar.growingTextView.showsVerticalScrollIndicator = true
+        } else {
+            inputBar.growingTextView.showsVerticalScrollIndicator = false
+        }
+
+
         var bottomContentInset = view.frame.height - inputBar.frame.minY + diff
         if #available(iOS 11.0, *) {
             bottomContentInset -= view.safeAreaInsets.bottom
