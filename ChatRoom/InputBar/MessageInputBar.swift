@@ -102,7 +102,7 @@ open class MessageInputBar: UIView {
     
     weak var delegate: MessageInputBarDelegate?
     
-    open private(set) var growingTextView: GrowingTextView = {
+    open var growingTextView: GrowingTextView = {
         let growingTextView = GrowingTextView(frame: .zero)
         growingTextView.minNumberOfLines = 1
         growingTextView.maxNumberOfLines = 5

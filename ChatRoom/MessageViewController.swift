@@ -44,7 +44,7 @@ open class MessageViewController: UIViewController {
     open private(set) var messageCollectionView: MessageCollectionView
     open private(set) var messageCollectionViewLayout = MessageCollectionViewFlowLayout()
     
-    open private(set) var messageInputBar = MessageInputBar(frame: .zero)
+    open var messageInputBar = MessageInputBar(frame: .zero)
     
     private var inputBarBottomConstraint: NSLayoutConstraint?
     private var inputBarHeightConstraint: NSLayoutConstraint?
@@ -142,8 +142,15 @@ open class MessageViewController: UIViewController {
         
         if let userInfo = notification.userInfo,
             let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let beginFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
             let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber {
-        
+
+            let diff: CGFloat = endFrame.origin.y - beginFrame.origin.y
+            
+            guard diff != 0 else {
+                return
+            }
+
             let endFrameY = endFrame.origin.y
             let duration: TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
             let animationCurveRaw = animationCurveRawNSN.uintValue
