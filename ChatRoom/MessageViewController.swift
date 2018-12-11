@@ -13,6 +13,7 @@ public protocol MessageViewControllerDelegate: NSObjectProtocol {
     func messageViewController(_ controller: MessageViewController, textDidClear text: String)
     func messageViewController(_ controller: MessageViewController, imagesDidPaste images: [UIImage])
     func messageViewController(_ controller: MessageViewController, typingStateDidChange typingState: MessageViewController.TypingState)
+    func messageviewController(_ controller: MessageViewController, textDidChange text: String?)
 }
 
 public extension MessageViewControllerDelegate {
@@ -298,6 +299,8 @@ extension MessageViewController: MessageInputBarDelegate {
         typingTimer = Timer.scheduledTimer(withTimeInterval: typingDelaySeconds, repeats: false, block: { [weak self] _ in
             self?.typingState = .idle
         })
+        
+        delegate?.messageviewController(self, textDidChange: text)
     }
     
     func messageInputBar(_ inputBar: MessageInputBar, imagesDidPaste images: [UIImage]) {

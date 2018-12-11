@@ -171,8 +171,6 @@ open class MessageInputBar: UIView {
         growingTextView.textView.text = ""
 
         self.lineHeightDiff = newHeight - origHeight
-        print("newHeight - origHeight\(newHeight - origHeight)")
-
 
         stackView.addArrangedSubview(growingTextView)
         
