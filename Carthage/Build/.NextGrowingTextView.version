@@ -1,9 +1,9 @@
 {
-  "commitish" : "1.2.2",
+  "commitish" : "1.4.0",
   "iOS" : [
     {
-      "hash" : "cd2dbbcabb105e1013f7a9c4b16452127b2f199f82aa54c37d6b8e3b2a12f3b0",
-      "name" : "NextGrowingTextView"
+      "name" : "NextGrowingTextView",
+      "hash" : "a4868c369f3bba0c20781686931c2770123daab6f39de3dc31e34fdfc7ab2528"
     }
   ]
 }

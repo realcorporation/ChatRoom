@@ -30,13 +30,12 @@ internal class NextGrowingInternalTextView: UITextView {
   // MARK: - Internal
 
   var didChange: () -> Void = {}
+  var didUpdateHeightDependencies: () -> Void = {}
 
   override init(frame: CGRect, textContainer: NSTextContainer?) {
     super.init(frame: frame, textContainer: textContainer)
 
-    self.textContainer.lineFragmentPadding = 0
-    
-    NotificationCenter.default.addObserver(self, selector: #selector(NextGrowingInternalTextView.textDidChangeNotification(_ :)), name: NSNotification.Name.UITextViewTextDidChange, object: self)
+    NotificationCenter.default.addObserver(self, selector: #selector(NextGrowingInternalTextView.textDidChangeNotification(_ :)), name: UITextView.textDidChangeNotification, object: self)
   }
 
   required init?(coder aDecoder: NSCoder) {
@@ -60,6 +59,18 @@ internal class NextGrowingInternalTextView: UITextView {
       updatePlaceholder()
     }
   }
+    
+  override var font: UIFont? {
+    didSet {
+      didUpdateHeightDependencies()
+    }
+  }
+    
+  override var textContainerInset: UIEdgeInsets {
+    didSet {
+      didUpdateHeightDependencies()
+    }
+  }
 
   var placeholderAttributedText: NSAttributedString? {
     didSet {
@@ -81,7 +92,7 @@ internal class NextGrowingInternalTextView: UITextView {
     paragraphStyle.alignment = textAlignment
 
     let targetRect = CGRect(
-      x: textContainerInset.left,
+      x: 5 + textContainerInset.left,
       y: textContainerInset.top,
       width: frame.size.width - (textContainerInset.left + textContainerInset.right),
       height: frame.size.height - (textContainerInset.top + textContainerInset.bottom)
@@ -108,6 +119,6 @@ internal class NextGrowingInternalTextView: UITextView {
   }
 
   private func updatePlaceholder() {
-    displayPlaceholder = text.characters.count == 0
+    displayPlaceholder = text.isEmpty
   }
 }

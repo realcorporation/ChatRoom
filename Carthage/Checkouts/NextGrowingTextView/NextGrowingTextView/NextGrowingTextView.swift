@@ -23,8 +23,6 @@
 import Foundation
 import UIKit
 
-// MARK: - NextGrowingTextView: UIScrollView
-
 open class NextGrowingTextView: UIScrollView {
   
   // MARK: - Nested types
@@ -47,12 +45,10 @@ open class NextGrowingTextView: UIScrollView {
       return _minNumberOfLines
     }
     set {
-      guard newValue > 0 else {
-        _minHeight = 1
+      guard newValue > 1 else {
+        _minNumberOfLines = 1
         return
       }
-
-      _minHeight = simulateHeight(newValue)
       _minNumberOfLines = newValue
     }
   }
@@ -63,16 +59,19 @@ open class NextGrowingTextView: UIScrollView {
     }
     set {
       guard newValue > 1 else {
-        _maxHeight = 1
+        _maxNumberOfLines = 1
         return
       }
-
-      _maxHeight = simulateHeight(newValue)
       _maxNumberOfLines = newValue
     }
   }
 
-  open var disableAutomaticScrollToBottom = false
+  @available(*, deprecated, message: "Use isAutomaticScrollToBottomEnabled")
+  open var disableAutomaticScrollToBottom: Bool {
+    return !isAutomaticScrollToBottomEnabled
+  }
+
+  open var isAutomaticScrollToBottomEnabled = true
   
   open var placeholderAttributedText: NSAttributedString? {
     get { return _textView.placeholderAttributedText }
@@ -105,8 +104,19 @@ open class NextGrowingTextView: UIScrollView {
   }
   
   private let _textView: NextGrowingInternalTextView
-  private var _maxNumberOfLines: Int = 0
-  private var _minNumberOfLines: Int = 0
+
+  private var _maxNumberOfLines: Int = 3 {
+    didSet {
+      _maxHeight = simulateHeight(_maxNumberOfLines)
+    }
+  }
+
+  private var _minNumberOfLines: Int = 1 {
+    didSet {
+      _minHeight = simulateHeight(_minNumberOfLines)
+    }
+  }
+
   private var _maxHeight: CGFloat = 0
   private var _minHeight: CGFloat = 0
   private var _previousFrame: CGRect = CGRect.zero
@@ -115,7 +125,7 @@ open class NextGrowingTextView: UIScrollView {
 
   public override init(frame: CGRect) {
     
-    _textView = NextGrowingInternalTextView(frame: CGRect(origin: CGPoint.zero, size: frame.size), textContainer: nil)
+    _textView = NextGrowingInternalTextView(frame: CGRect(origin: CGPoint.zero, size: frame.size))
     _previousFrame = frame
 
     super.init(frame: frame)
@@ -125,7 +135,7 @@ open class NextGrowingTextView: UIScrollView {
 
   public required init?(coder aDecoder: NSCoder) {
 
-    _textView = NextGrowingInternalTextView(frame: CGRect.zero, textContainer: nil)
+    _textView = NextGrowingInternalTextView(frame: CGRect.zero)
 
     super.init(coder: aDecoder)
 
@@ -151,18 +161,20 @@ open class NextGrowingTextView: UIScrollView {
   }
 
   private func setup() {
-    
-    _textView.contentInset = UIEdgeInsets.zero
-    _textView.textContainerInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+
+    _textView.textContainerInset = .init(top: 4, left: 0, bottom: 4, right: 0)
     _textView.isScrollEnabled = false
     _textView.font = UIFont.systemFont(ofSize: 16)
     _textView.backgroundColor = UIColor.clear
     addSubview(_textView)
-    _minHeight = simulateHeight(1)
-    maxNumberOfLines = 3
+
+    updateMinimumAndMaximumHeight()
 
     _textView.didChange = { [weak self] in
       self?.fitToScrollView()
+    }
+    _textView.didUpdateHeightDependencies = { [weak self] in
+      self?.updateMinimumAndMaximumHeight()
     }
   }
 
@@ -217,12 +229,12 @@ open class NextGrowingTextView: UIScrollView {
   }
 
   private func scrollToBottom() {
-    guard !disableAutomaticScrollToBottom else { return }
+    guard !isAutomaticScrollToBottomEnabled else { return }
     contentOffset.y = contentSize.height - frame.height
   }
 
   private func updateMinimumAndMaximumHeight() {
-    _minHeight = simulateHeight(1)
+    _minHeight = simulateHeight(minNumberOfLines)
     _maxHeight = simulateHeight(maxNumberOfLines)
     fitToScrollView()
   }
