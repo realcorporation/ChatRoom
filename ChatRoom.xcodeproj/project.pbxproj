@@ -22,7 +22,6 @@
 		9B149A7C208DC7F400A8055E /* ChatRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B149A38208D7F5E00A8055E /* ChatRoom.framework */; };
 		9B149A7D208DC7FD00A8055E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B149A5E208D886400A8055E /* UIKit.framework */; };
 		9B149A7F208DC80900A8055E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B149A7E208DC80900A8055E /* Foundation.framework */; };
-		9B149A80208DC84200A8055E /* ChatRoom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B149A38208D7F5E00A8055E /* ChatRoom.framework */; };
 		9B149A81208DC84200A8055E /* ChatRoom.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9B149A38208D7F5E00A8055E /* ChatRoom.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9B149A88208DD6EB00A8055E /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B149A87208DD6EB00A8055E /* MessageCell.swift */; };
 		9B149A8C208DEC9C00A8055E /* MessageInputBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B149A8B208DEC9C00A8055E /* MessageInputBarItem.swift */; };
@@ -109,7 +108,6 @@
 				9B149A7F208DC80900A8055E /* Foundation.framework in Frameworks */,
 				9B149A7D208DC7FD00A8055E /* UIKit.framework in Frameworks */,
 				9B149A7C208DC7F400A8055E /* ChatRoom.framework in Frameworks */,
-				9B149A80208DC84200A8055E /* ChatRoom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +267,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0930;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = co.real;
 				TargetAttributes = {
 					9B149A37208D7F5E00A8055E = {
