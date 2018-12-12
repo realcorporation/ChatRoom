@@ -210,7 +210,7 @@ open class MessageInputBar: UIView {
             strongSelf.delegate?.messageInputBar(strongSelf, didChangeHeight: adjustedHeight)
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChangeNotification(_:)), name: NSNotification.Name.UITextViewTextDidChange, object: growingTextView.textView)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChangeNotification(_:)), name: UITextView.textDidChangeNotification, object: growingTextView.textView)
     }
     
     open override func layoutSubviews() {
@@ -305,7 +305,7 @@ open class MessageInputBar: UIView {
     // MARK: - Notifications
     
     @objc private func textDidChangeNotification(_ noti: Notification) {
-        guard let textView = noti.object as? UITextView else { return }
+        guard let textView = noti.object as? UITextView, textView == self.growingTextView.textView else { return }
         
         if let text = textView.text, text.count > 0 {
             state = .textEditing

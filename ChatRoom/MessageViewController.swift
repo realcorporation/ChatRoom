@@ -110,10 +110,7 @@ open class MessageViewController: UIViewController {
         }
         inputBarBottomConstraint?.isActive = true
         
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardNotification(notification:)),
-                                               name: NSNotification.Name.UIKeyboardWillChangeFrame,
-                                               object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardNotification(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
     
     deinit {
@@ -142,9 +139,9 @@ open class MessageViewController: UIViewController {
     @objc private func keyboardNotification(notification: Notification) {
         
         if let userInfo = notification.userInfo,
-            let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
-            let beginFrame = (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
-            let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber {
+            let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let beginFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
+            let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber {
 
             let diff: CGFloat = endFrame.origin.y - beginFrame.origin.y
             
@@ -153,9 +150,9 @@ open class MessageViewController: UIViewController {
             }
 
             let endFrameY = endFrame.origin.y
-            let duration: TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let duration: TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
             let animationCurveRaw = animationCurveRawNSN.uintValue
-            let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+            let animationCurve: UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
             
             var bottomContentInset = CGFloat(messageInputBar.frame.height)
             var contentOffsetYDiff = endFrame.height
