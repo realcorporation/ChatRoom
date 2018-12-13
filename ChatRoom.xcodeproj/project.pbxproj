@@ -142,9 +142,9 @@
 				9B149A3B208D7F5E00A8055E /* ChatRoom.h */,
 				9B149A3C208D7F5E00A8055E /* Info.plist */,
 				9B149A58208D823E00A8055E /* InputBar */,
-				9B149A52208D7F9300A8055E /* MessageViewController.swift */,
 				9B149A54208D7FCC00A8055E /* MessageCollectionView.swift */,
 				9B149A56208D80B700A8055E /* MessageCollectionViewFlowLayout.swift */,
+				9B149A52208D7F9300A8055E /* MessageViewController.swift */,
 			);
 			path = ChatRoom;
 			sourceTree = "<group>";

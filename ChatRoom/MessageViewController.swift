@@ -55,32 +55,18 @@ open class MessageViewController: UIViewController {
     private var typingTimer: Timer?
     
     public override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-
         messageCollectionView = MessageCollectionView(frame: UIScreen.main.bounds, collectionViewLayout: messageCollectionViewLayout)
-        messageCollectionView.bounces = true
-        messageCollectionView.backgroundColor = .white
-        messageCollectionView.alwaysBounceVertical = true
-        messageCollectionView.showsHorizontalScrollIndicator = false
-        messageCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        if #available(iOS 11.0, *) {
-            messageCollectionView.keyboardDismissMode = .onDrag
-        }
-        
         super.init(nibName: nil, bundle: nil)
-        
-        messageCollectionView.touchDelegate = self
     }
     
     public required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        messageCollectionView = MessageCollectionView(frame: UIScreen.main.bounds, collectionViewLayout: messageCollectionViewLayout)
+        super.init(coder: aDecoder)
     }
     
     open override func viewDidLoad() {
         super.viewDidLoad()
-        
-        configureCollectionView(messageCollectionView, layout: messageCollectionViewLayout)
-        configureInputBar(messageInputBar)
+        configureMessageCollectionView()
         
         view.backgroundColor = .white
         
@@ -134,6 +120,20 @@ open class MessageViewController: UIViewController {
         }
     }
     
+    private func configureMessageCollectionView() {
+        messageCollectionView.bounces = true
+        messageCollectionView.backgroundColor = .white
+        messageCollectionView.alwaysBounceVertical = true
+        messageCollectionView.showsHorizontalScrollIndicator = false
+        messageCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        
+        if #available(iOS 11.0, *) {
+            messageCollectionView.keyboardDismissMode = .onDrag
+        }
+        
+        messageCollectionView.touchDelegate = self
+    }
+    
     // MARK: - Notifications
 
     @objc private func keyboardNotification(notification: Notification) {
@@ -145,9 +145,7 @@ open class MessageViewController: UIViewController {
 
             let diff: CGFloat = endFrame.origin.y - beginFrame.origin.y
             
-            guard diff != 0 else {
-                return
-            }
+            guard diff != 0 else { return }
 
             let endFrameY = endFrame.origin.y
             let duration: TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
@@ -187,16 +185,6 @@ open class MessageViewController: UIViewController {
                            },
                            completion: nil)
         }
-    }
-    
-    // MARK: - Configurations
-    
-    open func configureCollectionView(_ collectionView: MessageCollectionView, layout: MessageCollectionViewFlowLayout) {
-
-    }
-    
-    open func configureInputBar(_ inputBar: MessageInputBar) {
-        
     }
     
     // MARK: - Actions

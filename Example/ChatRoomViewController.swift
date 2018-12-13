@@ -19,7 +19,7 @@ class CustomButtonView: UIStackView {
     }
     
     required init(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
     }
     
 }
@@ -58,8 +58,8 @@ final class ChatRoomViewController: MessageViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // messageLists = ["Hello1", "Hello2", "Hello3", "Hello4", "Hello5", "Hello6", "Hello7", "Hello8", "Hello9", "Hello10"]
+        configureCollectionView(messageCollectionView, layout: messageCollectionViewLayout)
+        configureInputBar(messageInputBar)
         
         delegate = self
         
@@ -70,7 +70,6 @@ final class ChatRoomViewController: MessageViewController {
         super.viewDidAppear(animated)
         
         messageLists = []
-        // messageLists = ["Hello1", "Hello2", "Hello3", "Hello4", "Hello5", "Hello6", "Hello7", "Hello8", "Hello9", "Hello10"]
         var data = [String]()
         for i in 0..<10000 {
             let string = "Hello" + String(i)

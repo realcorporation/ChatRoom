@@ -9,17 +9,19 @@
 import UIKit
 
 open class MessageCollectionViewFlowLayout: UICollectionViewFlowLayout {
-    
     override init() {
         super.init()
-        
+        commonInit()
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit() {
         sectionHeadersPinToVisibleBounds = true
         minimumLineSpacing = 0
         sectionInset = .zero
     }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
 }

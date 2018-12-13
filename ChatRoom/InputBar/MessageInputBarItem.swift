@@ -9,7 +9,6 @@
 import Foundation
 
 open class MessageInputBarItem: UIView {
-    
     public enum ItemType {
         case submit
         case custom
@@ -28,7 +27,17 @@ open class MessageInputBarItem: UIView {
         self.customView = customView
         
         super.init(frame: .zero)
-        
+        commonInit()
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        self.itemType = ItemType.submit
+        self.customView = UIView()
+        super.init(coder: aDecoder)
+        commonInit()
+    }
+    
+    private func commonInit() {
         customView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(customView)
         
@@ -36,10 +45,5 @@ open class MessageInputBarItem: UIView {
                                      customView.trailingAnchor.constraint(equalTo: trailingAnchor),
                                      customView.topAnchor.constraint(equalTo: topAnchor),
                                      customView.bottomAnchor.constraint(equalTo: bottomAnchor)])
-        
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
