@@ -1,9 +1,18 @@
 {
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
   "commitish" : "1.4.0",
   "iOS" : [
     {
       "name" : "NextGrowingTextView",
-      "hash" : "a4868c369f3bba0c20781686931c2770123daab6f39de3dc31e34fdfc7ab2528"
+      "hash" : "191fd75e891dde5ce9f44fc4ae6381a44a51d11cedbeb6712cfd149bb08be44b"
     }
   ]
 }
