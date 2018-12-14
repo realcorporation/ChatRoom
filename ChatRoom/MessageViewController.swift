@@ -137,15 +137,10 @@ open class MessageViewController: UIViewController {
     // MARK: - Notifications
 
     @objc private func keyboardNotification(notification: Notification) {
-        
         if let userInfo = notification.userInfo,
             let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
             let beginFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
             let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber {
-
-            let diff: CGFloat = endFrame.origin.y - beginFrame.origin.y
-            
-            guard diff != 0 else { return }
 
             let endFrameY = endFrame.origin.y
             let duration: TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
@@ -161,9 +156,7 @@ open class MessageViewController: UIViewController {
             if endFrameY >= UIScreen.main.bounds.size.height {
                 inputBarBottomConstraint?.constant = 0.0
                 contentOffsetYDiff = -contentOffsetYDiff
-                
             } else {
-                
                 bottomContentInset += endFrame.height
                 
                 var constant = -endFrame.height
@@ -174,16 +167,18 @@ open class MessageViewController: UIViewController {
                 inputBarBottomConstraint?.constant = constant
             }
 
-            UIView.animate(withDuration: duration,
-                           delay: TimeInterval(0),
-                           options: animationCurve,
-                           animations: {
-                                self.view.layoutIfNeeded()
-                                self.messageCollectionView.contentOffset.y += contentOffsetYDiff
-                                self.messageCollectionView.contentInset.bottom = bottomContentInset
-                                self.messageCollectionView.scrollIndicatorInsets = self.messageCollectionView.contentInset
-                           },
-                           completion: nil)
+            UIView.animate(withDuration: duration, delay: TimeInterval(0), options: animationCurve, animations: { [weak self] in
+                guard let weakSelf = self else { return }
+                weakSelf.view.layoutIfNeeded()
+                
+                weakSelf.messageCollectionView.contentInset.bottom = bottomContentInset
+                weakSelf.messageCollectionView.scrollIndicatorInsets = weakSelf.messageCollectionView.contentInset
+                
+                let diff: CGFloat = endFrame.origin.y - beginFrame.origin.y
+                if diff != 0 {
+                    weakSelf.messageCollectionView.contentOffset.y += contentOffsetYDiff
+                }
+            }, completion: nil)
         }
     }
     
