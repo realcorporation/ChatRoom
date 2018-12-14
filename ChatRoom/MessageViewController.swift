@@ -141,6 +141,7 @@ open class MessageViewController: UIViewController {
             let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
             let beginFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
             let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber {
+            let remainingSpace = messageCollectionView.contentSize.height - (messageCollectionView.contentOffset.y + messageCollectionView.frame.height - messageCollectionView.contentInset.bottom)
 
             let endFrameY = endFrame.origin.y
             let duration: TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
@@ -175,6 +176,17 @@ open class MessageViewController: UIViewController {
                 weakSelf.messageCollectionView.scrollIndicatorInsets = weakSelf.messageCollectionView.contentInset
                 
                 let diff: CGFloat = endFrame.origin.y - beginFrame.origin.y
+                if diff > 0 {
+                    if -contentOffsetYDiff > remainingSpace {
+                        contentOffsetYDiff = -remainingSpace
+                    }
+                    
+                    if contentOffsetYDiff < 0 && weakSelf.messageCollectionView.contentOffset.y < 0 && -contentOffsetYDiff > -weakSelf.messageCollectionView.contentOffset.y {
+                        weakSelf.messageCollectionView.contentOffset.y = -weakSelf.messageCollectionView.contentInset.top
+                        return
+                    }
+                }
+                
                 if diff != 0 {
                     weakSelf.messageCollectionView.contentOffset.y += contentOffsetYDiff
                 }
