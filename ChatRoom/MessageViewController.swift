@@ -176,14 +176,69 @@ open class MessageViewController: UIViewController {
                 weakSelf.messageCollectionView.scrollIndicatorInsets = weakSelf.messageCollectionView.contentInset
                 
                 let diff: CGFloat = endFrame.origin.y - beginFrame.origin.y
-                if diff > 0 {
+                if diff > 0 { // To scroll down
                     if -contentOffsetYDiff > remainingSpace {
                         contentOffsetYDiff = -remainingSpace
+                    }
+                    
+                    // Assmue:
+                    // C = 100
+                    // offset1 = offset0 + offsetDiff
+                    // offsetBuffer = size0 - frame0 > 0 ? size0 - frame0 : 0
+                    // offsetBottom = -(size0 + C)
+                    // offsetMin = offsetBottom + offsetBuffer
+                    //
+                    // Where
+                    // offset1 >= offsetMin
+                    //
+                    
+                    let C: CGFloat = 100
+                    let offset1: CGFloat = weakSelf.messageCollectionView.contentOffset.y + contentOffsetYDiff
+                    let tmp: CGFloat = weakSelf.messageCollectionView.contentSize.height - weakSelf.messageCollectionView.frame.size.height - C
+                    let offsetBuffer: CGFloat = tmp > 0 ? tmp : 0
+                    let offsetBottom: CGFloat = -(weakSelf.messageCollectionView.contentSize.height + C)
+                    let offsetMin: CGFloat = offsetBottom + offsetBuffer
+                    if offset1 > offsetMin {
+                        if offset1 < weakSelf.messageCollectionView.contentSize.height {
+                            if contentOffsetYDiff > weakSelf.messageCollectionView.contentSize.height {
+                                weakSelf.messageCollectionView.contentOffset.y = -C
+                                return
+                            }
+                        } else {
+                            weakSelf.messageCollectionView.contentOffset.y = -C
+                            return
+                        }
                     }
                     
                     if contentOffsetYDiff < 0 && weakSelf.messageCollectionView.contentOffset.y < 0 && -contentOffsetYDiff > -weakSelf.messageCollectionView.contentOffset.y {
                         weakSelf.messageCollectionView.contentOffset.y = -weakSelf.messageCollectionView.contentInset.top
                         return
+                    }
+                } else { // To scroll up
+                    // Assmue:
+                    // C = 100
+                    // offset1 = offset0 + offsetDiff
+                    // offsetBuffer = size0 - frame0 > 0 ? size0 - frame0 : 0
+                    // offsetBottom = -(size0 + C)
+                    // offsetMin = offsetBottom + offsetBuffer
+                    //
+                    // Where
+                    // offset1 >= offsetMin
+                    //
+                    
+                    let C: CGFloat = 100
+                    let offset1: CGFloat = weakSelf.messageCollectionView.contentOffset.y + contentOffsetYDiff
+                    let tmp: CGFloat = weakSelf.messageCollectionView.contentSize.height - weakSelf.messageCollectionView.frame.size.height - C
+                    let offsetBuffer: CGFloat = tmp > 0 ? tmp : 0
+                    let offsetBottom: CGFloat = -(weakSelf.messageCollectionView.contentSize.height + C)
+                    let offsetMin: CGFloat = offsetBottom + offsetBuffer
+                    if offset1 > offsetMin {
+                        if offset1 < weakSelf.messageCollectionView.contentSize.height {
+                            
+                        } else {
+                            weakSelf.messageCollectionView.contentOffset.y = -C
+                            return
+                        }
                     }
                 }
                 
