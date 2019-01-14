@@ -141,7 +141,18 @@ open class MessageViewController: UIViewController {
             let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
             let beginFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
             let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber {
-            let remainingSpace = messageCollectionView.contentSize.height - (messageCollectionView.contentOffset.y + messageCollectionView.frame.height - messageCollectionView.contentInset.bottom)
+            
+            
+            var frameWindow2: CGFloat = 0
+            if #available(iOS 11.0, *) {
+                frameWindow2 = self.messageCollectionView.frame.size.height - self.messageCollectionView.adjustedContentInset.top - self.messageCollectionView.adjustedContentInset.bottom
+                
+            }
+            
+            let testingnow3 = self.messageCollectionView.contentSize.height - self.messageCollectionView.contentOffset.y
+            let testingnow4 = testingnow3 - frameWindow2
+            
+//            let remainingSpace = messageCollectionView.contentSize.height - (messageCollectionView.contentOffset.y + messageCollectionView.frame.height - messageCollectionView.contentInset.bottom)
 
             let endFrameY = endFrame.origin.y
             let duration: TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
@@ -169,81 +180,60 @@ open class MessageViewController: UIViewController {
             }
 
             UIView.animate(withDuration: duration, delay: TimeInterval(0), options: animationCurve, animations: { [weak self] in
-                guard let weakSelf = self else { return }
-                weakSelf.view.layoutIfNeeded()
+                guard let `self` = self else { return }
+                self.view.layoutIfNeeded()
                 
-                weakSelf.messageCollectionView.contentInset.bottom = bottomContentInset
-                weakSelf.messageCollectionView.scrollIndicatorInsets = weakSelf.messageCollectionView.contentInset
-                
+                self.messageCollectionView.contentInset.bottom = bottomContentInset
+                self.messageCollectionView.scrollIndicatorInsets = self.messageCollectionView.contentInset
                 let diff: CGFloat = endFrame.origin.y - beginFrame.origin.y
                 if diff > 0 { // To scroll down
-                    if -contentOffsetYDiff > remainingSpace {
-                        contentOffsetYDiff = -remainingSpace
+                    var ableOffsetSpace: CGFloat = 0
+                    var frameWindow: CGFloat = 0
+                    if #available(iOS 11.0, *) {
+                        frameWindow = self.messageCollectionView.frame.size.height - self.messageCollectionView.adjustedContentInset.top - self.messageCollectionView.adjustedContentInset.bottom
+                        ableOffsetSpace = self.messageCollectionView.contentSize.height - frameWindow
+                    } else {
+                        // TODO: Handle iOS 10
+                        return
                     }
                     
-                    // Assmue:
-                    // C = 100
-                    // offset1 = offset0 + offsetDiff
-                    // offsetBuffer = size0 - frame0 > 0 ? size0 - frame0 : 0
-                    // offsetBottom = -(size0 + C)
-                    // offsetMin = offsetBottom + offsetBuffer
-                    //
-                    // Where
-                    // offset1 >= offsetMin
-                    //
-                    
-                    let C: CGFloat = 100
-                    let offset1: CGFloat = weakSelf.messageCollectionView.contentOffset.y + contentOffsetYDiff
-                    let tmp: CGFloat = weakSelf.messageCollectionView.contentSize.height - weakSelf.messageCollectionView.frame.size.height - C
-                    let offsetBuffer: CGFloat = tmp > 0 ? tmp : 0
-                    let offsetBottom: CGFloat = -(weakSelf.messageCollectionView.contentSize.height + C)
-                    let offsetMin: CGFloat = offsetBottom + offsetBuffer
-                    if offset1 > offsetMin {
-                        if offset1 < weakSelf.messageCollectionView.contentSize.height {
-                            if contentOffsetYDiff > weakSelf.messageCollectionView.contentSize.height {
-                                weakSelf.messageCollectionView.contentOffset.y = -C
-                                return
-                            }
-                        } else {
-                            weakSelf.messageCollectionView.contentOffset.y = -C
-                            return
-                        }
+                    if ableOffsetSpace < 0 {
+                        return
                     }
                     
-                    if contentOffsetYDiff < 0 && weakSelf.messageCollectionView.contentOffset.y < 0 && -contentOffsetYDiff > -weakSelf.messageCollectionView.contentOffset.y {
-                        weakSelf.messageCollectionView.contentOffset.y = -weakSelf.messageCollectionView.contentInset.top
+                    let invertedContentOffsetYDiff = -contentOffsetYDiff
+                    if invertedContentOffsetYDiff > testingnow4 {
+                        // TODO: Message partially coverred by keyboard.
+//                        let testingnow5 = invertedContentOffsetYDiff - testingnow4
+//                        let testingnow6 = testingnow5 + messageInputBar.frame.size.height
+//                        self.messageCollectionView.contentOffset.y -= testingnow6
+                        return
+                    } else {
+                        self.messageCollectionView.contentOffset.y += contentOffsetYDiff
                         return
                     }
                 } else { // To scroll up
-                    // Assmue:
-                    // C = 100
-                    // offset1 = offset0 + offsetDiff
-                    // offsetBuffer = size0 - frame0 > 0 ? size0 - frame0 : 0
-                    // offsetBottom = -(size0 + C)
-                    // offsetMin = offsetBottom + offsetBuffer
-                    //
-                    // Where
-                    // offset1 >= offsetMin
-                    //
+                    var ableOffsetSpace: CGFloat = 0
+                    if #available(iOS 11.0, *) {
+                        let frameWindow = self.messageCollectionView.frame.size.height - self.messageCollectionView.adjustedContentInset.top - self.messageCollectionView.adjustedContentInset.bottom
+                        ableOffsetSpace = self.messageCollectionView.contentSize.height - frameWindow
+                    } else {
+                        // TODO: Handle iOS 10
+                        return
+                    }
                     
-                    let C: CGFloat = 100
-                    let offset1: CGFloat = weakSelf.messageCollectionView.contentOffset.y + contentOffsetYDiff
-                    let tmp: CGFloat = weakSelf.messageCollectionView.contentSize.height - weakSelf.messageCollectionView.frame.size.height - C
-                    let offsetBuffer: CGFloat = tmp > 0 ? tmp : 0
-                    let offsetBottom: CGFloat = -(weakSelf.messageCollectionView.contentSize.height + C)
-                    let offsetMin: CGFloat = offsetBottom + offsetBuffer
-                    if offset1 > offsetMin {
-                        if offset1 < weakSelf.messageCollectionView.contentSize.height {
-                            
-                        } else {
-                            weakSelf.messageCollectionView.contentOffset.y = -C
-                            return
-                        }
+                    if ableOffsetSpace < 0 {
+                        return
+                    }
+                    
+                    if contentOffsetYDiff > ableOffsetSpace {
+                        self.messageCollectionView.contentOffset.y += ableOffsetSpace
+                        return
                     }
                 }
                 
                 if diff != 0 {
-                    weakSelf.messageCollectionView.contentOffset.y += contentOffsetYDiff
+                    self.messageCollectionView.contentOffset.y += contentOffsetYDiff
                 }
             }, completion: nil)
         }
