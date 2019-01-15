@@ -142,17 +142,16 @@ open class MessageViewController: UIViewController {
             let beginFrame = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue,
             let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber {
             
-            
-            var frameWindow2: CGFloat = 0
+            var frameWindowBefore: CGFloat = 0
+            var adjustedSpaceTop: CGFloat = 0
             if #available(iOS 11.0, *) {
-                frameWindow2 = self.messageCollectionView.frame.size.height - self.messageCollectionView.adjustedContentInset.top - self.messageCollectionView.adjustedContentInset.bottom
-                
+                frameWindowBefore = self.messageCollectionView.frame.size.height - self.messageCollectionView.adjustedContentInset.top - self.messageCollectionView.adjustedContentInset.bottom
+                adjustedSpaceTop = self.messageCollectionView.adjustedContentInset.top
+            } else {
+                adjustedSpaceTop = self.messageCollectionView.contentInset.top
             }
             
-            let testingnow3 = self.messageCollectionView.contentSize.height - self.messageCollectionView.contentOffset.y
-            let testingnow4 = testingnow3 - frameWindow2
-            
-//            let remainingSpace = messageCollectionView.contentSize.height - (messageCollectionView.contentOffset.y + messageCollectionView.frame.height - messageCollectionView.contentInset.bottom)
+            let areaCoveredByKeyboard = self.messageCollectionView.contentSize.height - self.messageCollectionView.contentOffset.y - frameWindowBefore - adjustedSpaceTop
 
             let endFrameY = endFrame.origin.y
             let duration: TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
@@ -202,11 +201,9 @@ open class MessageViewController: UIViewController {
                     }
                     
                     let invertedContentOffsetYDiff = -contentOffsetYDiff
-                    if invertedContentOffsetYDiff > testingnow4 {
+                    if invertedContentOffsetYDiff > areaCoveredByKeyboard {
                         // TODO: Message partially coverred by keyboard.
-//                        let testingnow5 = invertedContentOffsetYDiff - testingnow4
-//                        let testingnow6 = testingnow5 + messageInputBar.frame.size.height
-//                        self.messageCollectionView.contentOffset.y -= testingnow6
+                        self.messageCollectionView.contentOffset.y -= areaCoveredByKeyboard
                         return
                     } else {
                         self.messageCollectionView.contentOffset.y += contentOffsetYDiff
