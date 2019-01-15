@@ -148,6 +148,7 @@ open class MessageViewController: UIViewController {
                 frameWindowBefore = self.messageCollectionView.frame.size.height - self.messageCollectionView.adjustedContentInset.top - self.messageCollectionView.adjustedContentInset.bottom
                 adjustedSpaceTop = self.messageCollectionView.adjustedContentInset.top
             } else {
+                frameWindowBefore = self.messageCollectionView.frame.size.height - self.messageCollectionView.contentInset.top - self.messageCollectionView.contentInset.bottom
                 adjustedSpaceTop = self.messageCollectionView.contentInset.top
             }
             
@@ -192,8 +193,8 @@ open class MessageViewController: UIViewController {
                         frameWindow = self.messageCollectionView.frame.size.height - self.messageCollectionView.adjustedContentInset.top - self.messageCollectionView.adjustedContentInset.bottom
                         ableOffsetSpace = self.messageCollectionView.contentSize.height - frameWindow
                     } else {
-                        // TODO: Handle iOS 10
-                        return
+                        frameWindow = self.messageCollectionView.frame.size.height - self.messageCollectionView.contentInset.top - self.messageCollectionView.contentInset.bottom
+                        ableOffsetSpace = self.messageCollectionView.contentSize.height - frameWindow
                     }
                     
                     if ableOffsetSpace < 0 {
@@ -215,8 +216,8 @@ open class MessageViewController: UIViewController {
                         let frameWindow = self.messageCollectionView.frame.size.height - self.messageCollectionView.adjustedContentInset.top - self.messageCollectionView.adjustedContentInset.bottom
                         ableOffsetSpace = self.messageCollectionView.contentSize.height - frameWindow
                     } else {
-                        // TODO: Handle iOS 10
-                        return
+                        let frameWindow = self.messageCollectionView.frame.size.height - self.messageCollectionView.contentInset.top - self.messageCollectionView.contentInset.bottom
+                        ableOffsetSpace = self.messageCollectionView.contentSize.height - frameWindow
                     }
                     
                     if ableOffsetSpace < 0 {
